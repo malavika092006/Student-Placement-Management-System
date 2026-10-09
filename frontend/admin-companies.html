@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Companies | SPMS Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🎓 SPMS Admin</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="admin-dashboard.html">Dashboard</a>
+
+        <a href="admin-students.html">Students</a>
+
+        <a href="admin-companies.html">Companies</a>
+
+        <a href="admin-login.html">Logout</a>
+
+    </nav>
+
+</header>
+
+
+<section class="jobs-section">
+
+    <div class="jobs-header">
+
+        <h1>Manage Companies</h1>
+
+        <p>
+            Add and manage companies visiting the college for placements.
+        </p>
+
+    </div>
+
+
+    <!-- Add Company Form -->
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <h2>Add Company</h2>
+
+        </div>
+
+
+        <form id="companyForm">
+
+            <div class="form-group">
+
+                <label for="companyName">
+                    Company Name
+                </label>
+
+                <input
+                    type="text"
+                    id="companyName"
+                    placeholder="Enter company name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="companyLocation">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="companyLocation"
+                    placeholder="Example: Chennai"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="companyIndustry">
+                    Industry
+                </label>
+
+                <input
+                    type="text"
+                    id="companyIndustry"
+                    placeholder="Example: Information Technology"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit" class="btn-submit">
+                Add Company
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <br>
+
+
+    <!-- Companies List -->
+
+    <div class="jobs-header">
+
+        <h2>Company List</h2>
+
+    </div>
+
+
+    <div class="jobs-container" id="companiesContainer">
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 Student Placement Management System |
+        College Semester Project
+    </p>
+
+</footer>
+
+
+<script>
+
+    let companies =
+        JSON.parse(localStorage.getItem("companies")) || [];
+
+
+    const companyForm =
+        document.getElementById("companyForm");
+
+    const container =
+        document.getElementById("companiesContainer");
+
+
+    function displayCompanies() {
+
+        container.innerHTML = "";
+
+
+        if (companies.length === 0) {
+
+            container.innerHTML =
+                "<p>No companies added yet.</p>";
+
+            return;
+
+        }
+
+
+        companies.forEach(function(company, index) {
+
+            container.innerHTML += `
+
+                <div class="job-card">
+
+                    <div class="company-logo">
+                        🏢
+                    </div>
+
+                    <div class="job-info">
+
+                        <h2>
+                            ${company.name}
+                        </h2>
+
+                        <p>
+                            <strong>Location:</strong>
+                            ${company.location}
+                        </p>
+
+                        <p>
+                            <strong>Industry:</strong>
+                            ${company.industry}
+                        </p>
+
+                    </div>
+
+                    <div class="job-action">
+
+                        <button onclick="deleteCompany(${index})">
+                            Delete
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    companyForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const company = {
+
+                name:
+                    document.getElementById("companyName")
+                    .value.trim(),
+
+                location:
+                    document.getElementById("companyLocation")
+                    .value.trim(),
+
+                industry:
+                    document.getElementById("companyIndustry")
+                    .value.trim()
+
+            };
+
+
+            companies.push(company);
+
+
+            localStorage.setItem(
+                "companies",
+                JSON.stringify(companies)
+            );
+
+
+            alert(
+                "Company added successfully!"
+            );
+
+
+            companyForm.reset();
+
+
+            displayCompanies();
+
+        }
+    );
+
+
+    function deleteCompany(index) {
+
+        companies.splice(index, 1);
+
+
+        localStorage.setItem(
+            "companies",
+            JSON.stringify(companies)
+        );
+
+
+        alert(
+            "Company deleted successfully!"
+        );
+
+
+        displayCompanies();
+
+    }
+
+
+    displayCompanies();
+
+</script>
+
+
+</body>
+
+</html>

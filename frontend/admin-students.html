@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Students | SPMS Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🎓 SPMS Admin</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="admin-dashboard.html">Dashboard</a>
+
+        <a href="admin-students.html">Students</a>
+
+        <a href="admin-login.html">Logout</a>
+
+    </nav>
+
+</header>
+
+
+<section class="jobs-section">
+
+    <div class="jobs-header">
+
+        <h1>Registered Students</h1>
+
+        <p>
+            View student details registered in the placement system.
+        </p>
+
+    </div>
+
+
+    <div class="jobs-container" id="studentsContainer">
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 Student Placement Management System |
+        College Semester Project
+    </p>
+
+</footer>
+
+
+<script>
+
+    const student =
+        JSON.parse(localStorage.getItem("studentProfile"));
+
+
+    const container =
+        document.getElementById("studentsContainer");
+
+
+    if (student) {
+
+        container.innerHTML = `
+
+            <div class="job-card">
+
+                <div class="company-logo">
+                    👨‍🎓
+                </div>
+
+                <div class="job-info">
+
+                    <h2>${student.name}</h2>
+
+                    <p>
+                        <strong>Email:</strong>
+                        ${student.email}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        ${student.phone}
+                    </p>
+
+                    <p>
+                        <strong>Register Number:</strong>
+                        ${student.registerNumber}
+                    </p>
+
+                    <p>
+                        <strong>College:</strong>
+                        ${student.college}
+                    </p>
+
+                    <p>
+                        <strong>Department:</strong>
+                        ${student.department}
+                    </p>
+
+                    <p>
+                        <strong>Year:</strong>
+                        ${student.year}
+                    </p>
+
+                    <p>
+                        <strong>Skills:</strong>
+                        ${student.skills}
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+    } else {
+
+        container.innerHTML =
+            "<p>No registered student found.</p>";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

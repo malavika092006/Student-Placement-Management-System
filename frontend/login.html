@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Login - Student Placement Management System.">
+    <title>Student Login | Student Placement Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION BAR ========== -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">🎓 SPMS</a>
+
+            <!-- Checkbox trick for mobile menu (CSS only, no JavaScript) -->
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon" aria-label="Toggle menu">&#9776;</label>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="login.html" class="active">Login</a>
+                <a href="register.html" class="nav-register">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== LOGIN SECTION ========== -->
+    <main class="login-section">
+        <div class="container">
+            <div class="form-card login-card">
+
+                <div class="form-header">
+                    <h1>Student Login</h1>
+                    <p>Welcome back! Log in to view companies and track your placement applications.</p>
+                </div>
+
+                <form id="loginForm" action="#" method="post">
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email <span class="req">*</span></label>
+                        <input type="email" id="email" name="email"
+                               placeholder="example@gmail.com" required>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group login-field">
+                        <label for="password">Password <span class="req">*</span></label>
+                        <input type="password" id="password" name="password"
+                               placeholder="Enter your password" required>
+                    </div>
+
+                    <!-- Remember Me + Forgot Password -->
+                    <div class="login-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="rememberMe" value="true"> Remember Me
+                        </label>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn-submit">Login</button>
+                </form>
+
+                <!-- Links -->
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="register.html">Register here</a></p>
+                    <a href="index.html" class="back-link">&larr; Back to Home</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 Student Placement Management System | College Semester Project</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

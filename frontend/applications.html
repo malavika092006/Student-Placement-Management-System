@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Applications | SPMS</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🎓 SPMS</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="applications.html" class="active">My Applications</a>
+        <a href="login.html">Logout</a>
+    </nav>
+
+</header>
+
+
+<section class="jobs-section">
+
+    <div class="jobs-header">
+
+        <h1>My Applications</h1>
+
+        <p>View and track your placement applications.</p>
+
+    </div>
+
+
+    <div class="jobs-container" id="applicationsContainer">
+    </div>
+
+
+    <br>
+
+    <button onclick="clearApplications()">
+        Clear Applications
+    </button>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 Student Placement Management System |
+        College Semester Project
+    </p>
+
+</footer>
+
+
+<script>
+
+    // Get saved applications
+
+    let applications =
+        JSON.parse(localStorage.getItem("applications")) || [];
+
+
+    let container =
+        document.getElementById("applicationsContainer");
+
+
+    // Show applications
+
+    if (applications.length === 0) {
+
+        container.innerHTML =
+            "<p>No applications found.</p>";
+
+    } else {
+
+        applications.forEach(function(application) {
+
+            container.innerHTML += `
+
+                <div class="job-card">
+
+                    <div class="company-logo">
+                        ✓
+                    </div>
+
+                    <div class="job-info">
+
+                        <h2>
+                            ${application.jobName}
+                        </h2>
+
+                        <p>
+                            📋 Placement Application
+                        </p>
+
+                        <span class="job-status">
+                            ${application.status}
+                        </span>
+
+                    </div>
+
+                    <div class="job-action">
+
+                        <span>
+                            Application Submitted
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    // Clear all applications
+
+    function clearApplications() {
+
+        localStorage.removeItem("applications");
+
+        alert("Applications cleared successfully!");
+
+        window.location.reload();
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

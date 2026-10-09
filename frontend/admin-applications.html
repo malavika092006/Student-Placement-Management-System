@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Applications | SPMS Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🎓 SPMS Admin</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="admin-dashboard.html">Dashboard</a>
+
+        <a href="admin-students.html">Students</a>
+
+        <a href="admin-companies.html">Companies</a>
+
+        <a href="admin-jobs.html">Jobs</a>
+
+        <a href="admin-applications.html">Applications</a>
+
+        <a href="admin-login.html">Logout</a>
+
+    </nav>
+
+</header>
+
+
+<section class="jobs-section">
+
+    <div class="jobs-header">
+
+        <h1>Student Applications</h1>
+
+        <p>
+            View and manage student placement applications.
+        </p>
+
+    </div>
+
+
+    <div class="jobs-container" id="applicationsContainer">
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 Student Placement Management System |
+        College Semester Project
+    </p>
+
+</footer>
+
+
+<script>
+
+    const applications =
+        JSON.parse(localStorage.getItem("applications")) || [];
+
+    const student =
+        JSON.parse(localStorage.getItem("studentProfile"));
+
+    const container =
+        document.getElementById("applicationsContainer");
+
+
+    if (applications.length === 0) {
+
+        container.innerHTML =
+            "<p>No student applications found.</p>";
+
+    } else {
+
+        applications.forEach(function(application, index) {
+
+            container.innerHTML += `
+
+                <div class="job-card">
+
+                    <div class="company-logo">
+                        📋
+                    </div>
+
+                    <div class="job-info">
+
+                        <h2>
+                            ${application.jobName}
+                        </h2>
+
+                        <p>
+                            <strong>Student:</strong>
+                            ${student ? student.name : "Student"}
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>
+                            ${student ? student.email : "Not available"}
+                        </p>
+
+                        <p>
+                            <strong>Application Status:</strong>
+                            ${application.status}
+                        </p>
+
+                    </div>
+
+                    <div class="job-action">
+
+                        <button onclick="updateStatus(${index})">
+                            Update Status
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    function updateStatus(index) {
+
+        const newStatus =
+            prompt(
+                "Enter new status:\n\nApplied\nShortlisted\nSelected\nRejected",
+                applications[index].status
+            );
+
+
+        if (newStatus === null || newStatus.trim() === "") {
+
+            return;
+
+        }
+
+
+        applications[index].status =
+            newStatus.trim();
+
+
+        localStorage.setItem(
+            "applications",
+            JSON.stringify(applications)
+        );
+
+
+        alert(
+            "Application status updated successfully!"
+        );
+
+
+        window.location.reload();
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

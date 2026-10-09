@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | SPMS</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🎓 SPMS</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="dashboard.html">Dashboard</a>
+
+        <a href="jobs.html">Jobs</a>
+
+        <a href="applications.html">
+            My Applications
+        </a>
+
+        <a href="login.html">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="jobs-section">
+
+    <div class="jobs-header">
+
+        <h1>My Profile</h1>
+
+        <p>
+            View your student profile details.
+        </p>
+
+    </div>
+
+
+    <div class="job-card">
+
+        <div class="job-info">
+
+            <h2>Student Information</h2>
+
+            <p>
+                <strong>Full Name:</strong>
+                <span id="profileName"></span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <span id="profileEmail"></span>
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                <span id="profilePhone"></span>
+            </p>
+
+            <p>
+                <strong>Register Number:</strong>
+                <span id="profileRegisterNumber"></span>
+            </p>
+
+            <p>
+                <strong>College:</strong>
+                <span id="profileCollege"></span>
+            </p>
+
+            <p>
+                <strong>Department:</strong>
+                <span id="profileDepartment"></span>
+            </p>
+
+            <p>
+                <strong>Year:</strong>
+                <span id="profileYear"></span>
+            </p>
+
+            <p>
+                <strong>Skills:</strong>
+                <span id="profileSkills"></span>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 Student Placement Management System |
+        College Semester Project
+    </p>
+
+</footer>
+
+
+<script>
+
+    // Get student profile from localStorage
+
+    const studentProfile =
+        JSON.parse(localStorage.getItem("studentProfile"));
+
+
+    if (studentProfile) {
+
+        document.getElementById("profileName").textContent =
+            studentProfile.name;
+
+        document.getElementById("profileEmail").textContent =
+            studentProfile.email;
+
+        document.getElementById("profilePhone").textContent =
+            studentProfile.phone;
+
+        document.getElementById("profileRegisterNumber").textContent =
+            studentProfile.registerNumber;
+
+        document.getElementById("profileCollege").textContent =
+            studentProfile.college;
+
+        document.getElementById("profileDepartment").textContent =
+            studentProfile.department;
+
+        document.getElementById("profileYear").textContent =
+            studentProfile.year;
+
+        document.getElementById("profileSkills").textContent =
+            studentProfile.skills;
+
+    } else {
+
+        alert("No student profile found.");
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

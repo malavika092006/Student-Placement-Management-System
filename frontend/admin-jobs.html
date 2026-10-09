@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Jobs | SPMS Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🎓 SPMS Admin</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="admin-dashboard.html">Dashboard</a>
+
+        <a href="admin-students.html">Students</a>
+
+        <a href="admin-companies.html">Companies</a>
+
+        <a href="admin-jobs.html">Jobs</a>
+
+        <a href="admin-login.html">Logout</a>
+
+    </nav>
+
+</header>
+
+
+<section class="jobs-section">
+
+    <div class="jobs-header">
+
+        <h1>Manage Jobs</h1>
+
+        <p>
+            Add and manage placement job opportunities.
+        </p>
+
+    </div>
+
+
+    <!-- Add Job Form -->
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <h2>Add New Job</h2>
+
+        </div>
+
+
+        <form id="jobForm">
+
+            <div class="form-group">
+
+                <label for="jobCompany">
+                    Company Name
+                </label>
+
+                <input
+                    type="text"
+                    id="jobCompany"
+                    placeholder="Example: TCS"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="jobTitle">
+                    Job Title
+                </label>
+
+                <input
+                    type="text"
+                    id="jobTitle"
+                    placeholder="Example: Java Developer"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="jobLocation">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="jobLocation"
+                    placeholder="Example: Chennai"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="jobType">
+                    Job Type
+                </label>
+
+                <select id="jobType" required>
+
+                    <option value="" disabled selected>
+                        Select Job Type
+                    </option>
+
+                    <option value="Full Time">
+                        Full Time
+                    </option>
+
+                    <option value="Part Time">
+                        Part Time
+                    </option>
+
+                    <option value="Internship">
+                        Internship
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="jobSkills">
+                    Required Skills
+                </label>
+
+                <input
+                    type="text"
+                    id="jobSkills"
+                    placeholder="Example: Java, SQL, HTML"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit" class="btn-submit">
+                Add Job
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <br>
+
+
+    <!-- Job List -->
+
+    <div class="jobs-header">
+
+        <h2>Available Jobs</h2>
+
+    </div>
+
+
+    <div class="jobs-container" id="jobsContainer">
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 Student Placement Management System |
+        College Semester Project
+    </p>
+
+</footer>
+
+
+<script>
+
+    let jobs =
+        JSON.parse(localStorage.getItem("adminJobs")) || [];
+
+
+    const jobForm =
+        document.getElementById("jobForm");
+
+    const container =
+        document.getElementById("jobsContainer");
+
+
+    function displayJobs() {
+
+        container.innerHTML = "";
+
+
+        if (jobs.length === 0) {
+
+            container.innerHTML =
+                "<p>No jobs added yet.</p>";
+
+            return;
+
+        }
+
+
+        jobs.forEach(function(job, index) {
+
+            container.innerHTML += `
+
+                <div class="job-card">
+
+                    <div class="company-logo">
+                        💼
+                    </div>
+
+                    <div class="job-info">
+
+                        <h2>
+                            ${job.company}
+                        </h2>
+
+                        <p>
+                            <strong>Job:</strong>
+                            ${job.title}
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            ${job.location}
+                        </p>
+
+                        <p>
+                            <strong>Type:</strong>
+                            ${job.type}
+                        </p>
+
+                        <p>
+                            <strong>Skills:</strong>
+                            ${job.skills}
+                        </p>
+
+                        <span class="job-status">
+                            Open
+                        </span>
+
+                    </div>
+
+                    <div class="job-action">
+
+                        <button
+                            onclick="deleteJob(${index})">
+                            Delete
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    jobForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const job = {
+
+                company:
+                    document.getElementById("jobCompany")
+                    .value.trim(),
+
+                title:
+                    document.getElementById("jobTitle")
+                    .value.trim(),
+
+                location:
+                    document.getElementById("jobLocation")
+                    .value.trim(),
+
+                type:
+                    document.getElementById("jobType")
+                    .value,
+
+                skills:
+                    document.getElementById("jobSkills")
+                    .value.trim()
+
+            };
+
+
+            jobs.push(job);
+
+
+            localStorage.setItem(
+                "adminJobs",
+                JSON.stringify(jobs)
+            );
+
+
+            alert(
+                "Job added successfully!"
+            );
+
+
+            jobForm.reset();
+
+
+            displayJobs();
+
+        }
+    );
+
+
+    function deleteJob(index) {
+
+        jobs.splice(index, 1);
+
+
+        localStorage.setItem(
+            "adminJobs",
+            JSON.stringify(jobs)
+        );
+
+
+        alert(
+            "Job deleted successfully!"
+        );
+
+
+        displayJobs();
+
+    }
+
+
+    displayJobs();
+
+</script>
+
+
+</body>
+
+</html>

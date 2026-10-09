@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Registration - Student Placement Management System.">
+    <title>Student Registration | Student Placement Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION BAR ========== -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">🎓 SPMS</a>
+
+            <!-- Checkbox trick for mobile menu (CSS only, no JavaScript) -->
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon" aria-label="Toggle menu">&#9776;</label>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="login.html">Login</a>
+                <a href="register.html" class="nav-register">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== REGISTRATION SECTION ========== -->
+    <main class="register-section">
+        <div class="container">
+            <div class="form-card">
+
+                <div class="form-header">
+                    <h1>Student Registration</h1>
+                    <p>Create your account to explore placement opportunities.</p>
+                </div>
+
+                <form id="registerForm" action="#" method="post" enctype="multipart/form-data">
+                    <div class="form-grid">
+
+                        <!-- Full Name -->
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="req">*</span></label>
+                            <input type="text" id="fullName" name="fullName"
+                                   placeholder="Enter your full name" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email <span class="req">*</span></label>
+                            <input type="email" id="email" name="email"
+                                   placeholder="example@gmail.com" required>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="req">*</span></label>
+                            <input type="tel" id="phone" name="phone"
+                                   placeholder="10-digit mobile number"
+                                   pattern="[0-9]{10}" maxlength="10"
+                                   title="Please enter a 10-digit phone number" required>
+                        </div>
+
+                        <!-- Register Number -->
+                        <div class="form-group">
+                            <label for="registerNumber">Register Number <span class="req">*</span></label>
+                            <input type="text" id="registerNumber" name="registerNumber"
+                                   placeholder="Enter your register number" required>
+                        </div>
+
+                        <!-- College Name -->
+                        <div class="form-group">
+                            <label for="collegeName">College Name <span class="req">*</span></label>
+                            <input type="text" id="collegeName" name="collegeName"
+                                   placeholder="Enter your college name" required>
+                        </div>
+
+                        <!-- Department -->
+                        <div class="form-group">
+                            <label for="department">Department <span class="req">*</span></label>
+                            <select id="department" name="department" required>
+                                <option value="" disabled selected>Select department</option>
+                                <option value="CSE">Computer Science &amp; Engineering</option>
+                                <option value="IT">Information Technology</option>
+                                <option value="ECE">Electronics &amp; Communication</option>
+                                <option value="EEE">Electrical &amp; Electronics</option>
+                                <option value="MECH">Mechanical Engineering</option>
+                                <option value="CIVIL">Civil Engineering</option>
+                                <option value="AIDS">Artificial Intelligence &amp; Data Science</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Year of Study -->
+                        <div class="form-group">
+                            <label for="year">Year of Study <span class="req">*</span></label>
+                            <select id="year" name="year" required>
+                                <option value="" disabled selected>Select year</option>
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
+                                <option value="4">4th Year</option>
+                            </select>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group">
+                            <label>Gender <span class="req">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="gender" value="Male" required> Male
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gender" value="Female"> Female
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gender" value="Other"> Other
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password">Password <span class="req">*</span></label>
+                            <input type="password" id="password" name="password"
+                                   placeholder="Minimum 6 characters" minlength="6" required>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password <span class="req">*</span></label>
+                            <input type="password" id="confirmPassword" name="confirmPassword"
+                                   placeholder="Re-enter your password" minlength="6" required>
+                        </div>
+
+                        <!-- Skills -->
+                        <div class="form-group full-width">
+                            <label for="skills">Skills</label>
+                            <textarea id="skills" name="skills" rows="3"
+                                      placeholder="Example: Java, HTML, CSS, SQL, Communication"></textarea>
+                        </div>
+
+                        <!-- Resume Upload -->
+                        <div class="form-group full-width">
+                            <label for="resume">Upload Resume <span class="req">*</span></label>
+                            <input type="file" id="resume" name="resume"
+                                   accept=".pdf,.doc,.docx" required>
+                            <small class="hint">Accepted formats: PDF, DOC, DOCX</small>
+                        </div>
+
+                    </div>
+
+                    <!-- Register Button -->
+                    <button type="submit" class="btn-submit">Register</button>
+                </form>
+
+                <!-- Links -->
+                <div class="form-footer">
+                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                    <a href="index.html" class="back-link">&larr; Back to Home</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Student Placement Management System | College Semester Project</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

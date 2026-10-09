@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | SPMS</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🎓 SPMS</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="login.html">Student Login</a>
+
+        <a href="admin-login.html">Admin Login</a>
+
+    </nav>
+
+</header>
+
+
+<section class="register-section">
+
+    <div class="container">
+
+        <div class="form-card">
+
+            <div class="form-header">
+
+                <h1>Admin Login</h1>
+
+                <p>
+                    Login to manage students, companies and placements.
+                </p>
+
+            </div>
+
+
+            <form id="adminLoginForm">
+
+                <div class="form-group">
+
+                    <label for="adminEmail">
+                        Admin Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        placeholder="Enter admin email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter admin password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="btn-submit">
+                    Login
+                </button>
+
+            </form>
+
+
+            <div class="form-footer">
+
+                <a href="index.html" class="back-link">
+                    &larr; Back to Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 Student Placement Management System |
+        College Semester Project
+    </p>
+
+</footer>
+
+
+<script>
+
+    const adminLoginForm =
+        document.getElementById("adminLoginForm");
+
+
+    adminLoginForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById("adminEmail").value.trim();
+
+        const password =
+            document.getElementById("adminPassword").value;
+
+
+        // Demo admin login
+
+        if (
+            email === "admin@spms.com" &&
+            password === "admin123"
+        ) {
+
+            alert("Admin login successful!");
+
+            window.location.href =
+                "admin-dashboard.html";
+
+        } else {
+
+            alert(
+                "Invalid admin email or password!"
+            );
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
