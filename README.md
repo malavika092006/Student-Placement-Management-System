@@ -30,6 +30,3 @@ cd frontend
 npm install
 npm run dev
 
-**Paste panni mudichittu mela irukkura `Commit changes` green button-a click pannu da!**
-
-**Mudichittu photo anuppu da!**
